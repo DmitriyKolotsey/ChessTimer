@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ChessTimer</string>
+    <string name="b_settings">Настройки</string>
+    <string name="b_start">Старт</string>
+    <string name="b_refresh">Обновить</string>
+    <string name="b_create_custom_mode">Создать свой режим</string>
+    <string name="timer_min">мин</string>
+    <string name="timer_hour">час</string>
+    <string name="timer_sec">сек</string>
+    <string name="bonus_time_title">Выберите дополнительное время</string>
+    <string name="moves">"Ходов: "</string>
+    <string name="selected_settings">"Выбранные настройки: "</string>
+    <string name="start_time_equals">"Начальное время = "</string>
+    <string name="bonus_time_equals">"Бонусное время = "</string>
+    <string name="create_custom_mode_title">Создание собственного режима</string>
+    <string name="start_time">Начальное время:</string>
+    <string name="bonus_time">"Бонусное время: "</string>
+    <string name="zero_min">0 мин</string>
+    <string name="zero_sec">0 сек</string>
+    <string name="b_create">Создать</string>
+    <string name="max_value">59 максимальное значение</string>
+    <string name="min_value">0 минимальное значение</string>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/drawable/add_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/drawable/add_48.xml" value="0.3828125" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/drawable/b_shape.xml" value="0.3828125" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/drawable/dialog_fragments_shape.xml" value="0.3828125" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/drawable/refresh_48.xml" value="0.3828125" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/drawable/remove_36.xml" value="0.3828125" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/drawable/remove_48.xml" value="0.3828125" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/drawable/settings_48.xml" value="0.3828125" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/drawable/tv_shape.xml" value="0.3828125" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/drawable/tv_shape_active.xml" value="0.3828125" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/layout/activity_settings.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/layout/dialogfragment_create_custom_mode.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/layout/dialogfragment_save_last_selected_mode.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/layout/dialogfragment_select_bonus_time.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/kolotsey/AndroidStudioProjects/ChessTimer/app/src/main/res/layout/select_bonus_time_dialogfragment.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

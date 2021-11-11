@@ -1,0 +1,98 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTopPlayerMovesCount"
+                style="@style/TextViewMovesCountStyle"
+                android:rotation="180"
+                android:layout_gravity="start"
+                android:background="@drawable/tv_shape"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvTopPlayer"
+            style="@style/TextViewMainActivityStyle"
+            android:background="@drawable/tv_shape"
+            android:rotation="180"
+            android:layout_marginBottom="50dp"
+            android:onClick="onTopPlayerClick" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/ibSettings"
+            style="@style/ButtonCustom"
+            android:background="@drawable/b_shape"
+            android:contentDescription="@string/b_settings"
+            android:onClick="onButtonSettingsClick"
+            app:srcCompat="@drawable/settings_48" />
+
+        <ImageButton
+            android:id="@+id/ibStart"
+            style="@style/ButtonCustom"
+            android:background="@drawable/b_shape"
+            android:contentDescription="@string/b_start"
+            android:onClick="onButtonStartOrPauseClick"
+            app:srcCompat="@drawable/play_arrow_48" />
+
+        <ImageButton
+            android:id="@+id/ibRefresh"
+            style="@style/ButtonCustom"
+            android:background="@drawable/b_shape"
+            android:contentDescription="@string/b_refresh"
+            android:onClick="onButtonRefreshClick"
+            app:srcCompat="@drawable/refresh_48" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvBotPlayer"
+            style="@style/TextViewMainActivityStyle"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/tv_shape"
+            android:onClick="onBotPlayerClick" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvBotPlayerMovesCount"
+                style="@style/TextViewMovesCountStyle"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@drawable/tv_shape" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/bonus_time_title"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/b0sec"
+            style="@style/TextViewSelectBonusTimeStyle"
+            android:layout_weight="1"
+            android:background="@drawable/tv_shape"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="tv1secOnClick" />
+
+        <Button
+            android:id="@+id/b1sec"
+            style="@style/TextViewSelectBonusTimeStyle"
+            android:layout_weight="1"
+            android:background="@drawable/tv_shape"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="tv3secOnClick" />
+
+        <Button
+            android:id="@+id/b3sec"
+            style="@style/TextViewSelectBonusTimeStyle"
+            android:layout_weight="1"
+            android:background="@drawable/tv_shape"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="tv5secOnClick" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/b5sec"
+            style="@style/TextViewSelectBonusTimeStyle"
+            android:layout_weight="1"
+            android:background="@drawable/tv_shape"
+            android:clickable="true"
+            android:onClick="tv1secOnClick"
+            android:focusable="true" />
+
+        <Button
+            android:id="@+id/b7sec"
+            style="@style/TextViewSelectBonusTimeStyle"
+            android:layout_weight="1"
+            android:background="@drawable/tv_shape"
+            android:clickable="true"
+            android:onClick="tv3secOnClick"
+            android:focusable="true" />
+
+        <Button
+            android:id="@+id/b10sec"
+            style="@style/TextViewSelectBonusTimeStyle"
+            android:layout_weight="1"
+            android:background="@drawable/tv_shape"
+            android:clickable="true"
+            android:onClick="tv5secOnClick"
+            android:focusable="true" />
+    </LinearLayout>
+
+</LinearLayout>
