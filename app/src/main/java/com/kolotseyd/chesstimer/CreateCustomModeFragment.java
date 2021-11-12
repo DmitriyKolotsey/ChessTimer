@@ -1,11 +1,10 @@
 package com.kolotseyd.chesstimer;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,12 +32,11 @@ public class CreateCustomModeFragment extends DialogFragment {
     Button bCreate;
 
     SharedPreferences shpSettings;
+    Runnable minutesIncrementTask;
 
     long addedMinutes = 0, addedSeconds = 0, addedBonusSeconds = 0;
     long minValue = 0;
-    long secondsMaxValue = 59;
-    CountDownTimer cdt;
-    //boolean isStillPressed = true;
+    boolean isPressed = false;
 
     public CreateCustomModeFragment() {
     }
@@ -79,6 +77,27 @@ public class CreateCustomModeFragment extends DialogFragment {
             addedMinutes++;
             tvAddedMinutes.setText(addedMinutes + " " + getString(R.string.timer_min));
         });
+        Handler handler = new Handler();
+        minutesIncrementTask = () -> {
+            addedMinutes++;
+            tvAddedMinutes.setText(addedMinutes + " " + getString(R.string.timer_min));
+            handler.postDelayed(minutesIncrementTask,200);
+        };
+        ibAddMinutes.setOnTouchListener((view12, motionEvent) -> {
+            switch (motionEvent.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    if (!isPressed){
+                        isPressed = true;
+                        handler.post(minutesIncrementTask);
+                    }
+                case MotionEvent.ACTION_UP:
+                    if (isPressed){
+                        isPressed = false;
+                        handler.removeCallbacks(minutesIncrementTask);
+                    }
+            }
+            return false;
+        });
 
         ibRemoveMinutes.setOnClickListener(view1 -> {
             if (addedMinutes != minValue){
@@ -88,9 +107,7 @@ public class CreateCustomModeFragment extends DialogFragment {
         });
 
         ibAddSeconds.setOnClickListener(view13 -> {
-            if (addedSeconds != secondsMaxValue){
-                addedSeconds++;
-            }
+            addedSeconds++;
             tvAddedSeconds.setText(addedSeconds + " " + getString(R.string.timer_sec));
         });
 
@@ -102,9 +119,7 @@ public class CreateCustomModeFragment extends DialogFragment {
         });
 
         ibAddBonusSeconds.setOnClickListener(view15 -> {
-            if (addedBonusSeconds != secondsMaxValue){
-                addedBonusSeconds++;
-            }
+            addedBonusSeconds++;
             tvAddedBonusSeconds.setText(addedBonusSeconds + " " + getString(R.string.timer_sec));
         });
 

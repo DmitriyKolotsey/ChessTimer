@@ -2,6 +2,7 @@ package com.kolotseyd.chesstimer;
 
 import static com.kolotseyd.chesstimer.MainActivity.APP_PREFERENCES_BONUS_TIME;
 import static com.kolotseyd.chesstimer.MainActivity.APP_PREFERENCES_START_TIME;
+import static com.kolotseyd.chesstimer.MainActivity.APP_PREFERENCES_CONTROL_BUTTON_STATE;
 import static com.kolotseyd.chesstimer.MainActivity.DEFAULT_BONUS_TIME;
 import static com.kolotseyd.chesstimer.MainActivity.DEFAULT_START_TIME;
 
@@ -56,6 +57,7 @@ public class SelectBonusTimeFragment extends DialogFragment {
         b0sec.setText("+0 \n" + getString(R.string.timer_sec));
         view.findViewById(R.id.b0sec).setOnClickListener(view13 -> {
             editorBonusTime.putLong(APP_PREFERENCES_BONUS_TIME, 0);
+            editorBonusTime.putString(APP_PREFERENCES_CONTROL_BUTTON_STATE, "start");
             editorBonusTime.apply();
             showSelectedSettings();
             Intent i = new Intent(getContext(), MainActivity.class);
@@ -66,6 +68,7 @@ public class SelectBonusTimeFragment extends DialogFragment {
         b1sec.setText("+1 \n" + getString(R.string.timer_sec));
         view.findViewById(R.id.b1sec).setOnClickListener(view12 -> {
             editorBonusTime.putLong(APP_PREFERENCES_BONUS_TIME, 1000);
+            editorBonusTime.putString(APP_PREFERENCES_CONTROL_BUTTON_STATE, "start");
             editorBonusTime.apply();
             showSelectedSettings();
             Intent i = new Intent(getContext(), MainActivity.class);
@@ -76,6 +79,7 @@ public class SelectBonusTimeFragment extends DialogFragment {
         b3sec.setText("+3 \n" + getString(R.string.timer_sec));
         view.findViewById(R.id.b3sec).setOnClickListener(view1 -> {
             editorBonusTime.putLong(APP_PREFERENCES_BONUS_TIME, 3000);
+            editorBonusTime.putString(APP_PREFERENCES_CONTROL_BUTTON_STATE, "start");
             editorBonusTime.apply();
             showSelectedSettings();
             Intent i = new Intent(getContext(), MainActivity.class);
@@ -86,6 +90,7 @@ public class SelectBonusTimeFragment extends DialogFragment {
         b5sec.setText("+5 \n" + getString(R.string.timer_sec));
         view.findViewById(R.id.b5sec).setOnClickListener(view14 -> {
             editorBonusTime.putLong(APP_PREFERENCES_BONUS_TIME, 5000);
+            editorBonusTime.putString(APP_PREFERENCES_CONTROL_BUTTON_STATE, "start");
             editorBonusTime.apply();
             showSelectedSettings();
             Intent i = new Intent(getContext(), MainActivity.class);
@@ -96,6 +101,7 @@ public class SelectBonusTimeFragment extends DialogFragment {
         b7sec.setText("+7 \n" + getString(R.string.timer_sec));
         view.findViewById(R.id.b7sec).setOnClickListener(view15 -> {
             editorBonusTime.putLong(APP_PREFERENCES_BONUS_TIME, 7000);
+            editorBonusTime.putString(APP_PREFERENCES_CONTROL_BUTTON_STATE, "start");
             editorBonusTime.apply();
             showSelectedSettings();
             Intent i = new Intent(getContext(), MainActivity.class);
@@ -106,6 +112,7 @@ public class SelectBonusTimeFragment extends DialogFragment {
         b10sec.setText("+10 \n" + getString(R.string.timer_sec));
         view.findViewById(R.id.b10sec).setOnClickListener(view16 -> {
             editorBonusTime.putLong(APP_PREFERENCES_BONUS_TIME, 10000);
+            editorBonusTime.putString(APP_PREFERENCES_CONTROL_BUTTON_STATE, "start");
             editorBonusTime.apply();
             showSelectedSettings();
             Intent i = new Intent(getContext(), MainActivity.class);

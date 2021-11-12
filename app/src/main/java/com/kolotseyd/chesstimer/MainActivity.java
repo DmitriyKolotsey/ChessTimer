@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     CountDownTimer cdtTopTimer, cdtBotTimer;
 
     SharedPreferences shpSettings;
+
+    SoundPool soundPool;
 
     public static final String APP_PREFERENCES = "my_settings";
     public static final String APP_PREFERENCES_LAST_ACTIVE = "last_active_player";
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     public int topPlayerMovesCount = 0;
     public int botPlayerMovesCount = 0;
+    public int buttonSound;
 
     public long topStartTime, botStartTime;
 
@@ -63,24 +68,35 @@ public class MainActivity extends AppCompatActivity {
         tvBotPlayerMovesCount = findViewById(R.id.tvBotPlayerMovesCount);
         tvBotPlayerMovesCount.setText(getString(R.string.moves)+ botPlayerMovesCount);
 
+        soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
+        buttonSound = soundPool.load(getApplicationContext(), R.raw.clock_button, 1);
+
         shpSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
         long start_time = shpSettings.getLong(APP_PREFERENCES_START_TIME, DEFAULT_START_TIME);
         long min = start_time/(1000*60);
         long sec = (start_time/1000) - min*60;
         String text;
         if (sec < 10){
-             text = min + ":" + sec + "0";
+             text = min + ":0" + sec;
         } else  text = min + ":" + sec;
         tvTopTimer.setText(text);
         tvBotTimer.setText(text);
 
-        botStartTime = shpSettings.getLong(APP_PREFERENCES_BOT_START_TIME, DEFAULT_START_TIME);
+        SharedPreferences.Editor editor = shpSettings.edit();
+        editor.putString(APP_PREFERENCES_CONTROL_BUTTON_STATE, "start");
+        editor.apply();
 
-        //Toast.makeText(getApplicationContext(), shpSettings.getString(APP_PREFERENCES_CONTROL_BUTTON_STATE, "0"), Toast.LENGTH_SHORT).show();
+        botStartTime = shpSettings.getLong(APP_PREFERENCES_START_TIME, DEFAULT_START_TIME);
+
+        Toast.makeText(getApplicationContext(), "onCreate " + shpSettings.getString(APP_PREFERENCES_CONTROL_BUTTON_STATE, "0"), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onStop() {
+        if (isTopTimerWorking || isBotTimerWorking){
+
+        } else
+
         if (isTopTimerWorking){
             cdtTopTimer.cancel();
             isTopTimerWorking = false;
@@ -163,6 +179,8 @@ public class MainActivity extends AppCompatActivity {
         tvBotTimer.setClickable(true);
         cdtTopTimer.cancel();
 
+        soundPool.play(buttonSound, 1, 1, 1, 0, 1);
+
         botPlayerMovesCount++;
         tvBotPlayerMovesCount.setText(getString(R.string.moves) + botPlayerMovesCount);
 
@@ -211,6 +229,8 @@ public class MainActivity extends AppCompatActivity {
         tvTopTimer.setClickable(true);
         tvBotTimer.setClickable(false);
         cdtBotTimer.cancel();
+
+        soundPool.play(buttonSound, 1, 1, 1, 0, 1);
 
         topPlayerMovesCount++;
         tvTopPlayerMovesCount.setText(getString(R.string.moves) + topPlayerMovesCount);
@@ -419,6 +439,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = shpSettings.edit();
         editor.putString(APP_PREFERENCES_LAST_ACTIVE, "");
         editor.putString(APP_PREFERENCES_CONTROL_BUTTON_STATE, "start");
+        editor.putLong(APP_PREFERENCES_TOP_START_TIME, shpSettings.getLong(APP_PREFERENCES_START_TIME, 0));
+        editor.putLong(APP_PREFERENCES_BOT_START_TIME, shpSettings.getLong(APP_PREFERENCES_START_TIME, 0));
         editor.apply();
 
         long start_time = shpSettings.getLong(APP_PREFERENCES_START_TIME, DEFAULT_START_TIME);
