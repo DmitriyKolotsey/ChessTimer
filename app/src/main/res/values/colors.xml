@@ -7,8 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background">#2b2b2b</color>
+    <color name="background">#1b1b1b</color>
     <color name="elements">#3c3f41</color>
-    <color name="active_elements">#FFB400</color>
-    <color name="end_timer">#FF1900</color>
+    <color name="active_elements">#e9a502</color>
+    <color name="end_timer">#b40000</color>
 </resources>

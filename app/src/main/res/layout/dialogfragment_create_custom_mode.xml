@@ -14,14 +14,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvStartTime"
-                android:layout_gravity="center"
-                style="@style/TextViewCreateCustomModeFragmentStyle"
-                android:text="@string/start_time" />
+        <TextView
+            android:id="@+id/tvStartTime"
+            style="@style/TextViewCreateCustomModeFragmentStyle"
+            android:layout_gravity="center"
+            android:text="@string/start_time" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,86 +29,83 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Space
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_weight="1" />
 
-                <ImageButton
-                    android:id="@+id/ibAddMinutes"
-                    style="@style/ImageButtonCreateCustomModeFragmentStyle"
-                    app:srcCompat="@drawable/add_36" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etAddedMinutes"
+                    style="@style/EditTextCreateCustomModeFragmentStyle"/>
 
                 <TextView
                     android:id="@+id/tvAddedMinutes"
                     style="@style/TextViewCreateCustomModeFragmentStyle"
-                    android:text="@string/zero_min" />
+                    android:text="@string/timer_min" />
 
-                <ImageButton
-                    android:id="@+id/ibRemoveMinutes"
-                    style="@style/ImageButtonCreateCustomModeFragmentStyle"
-                    app:srcCompat="@drawable/remove_36" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Space
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_weight="1" />
 
-                <ImageButton
-                    android:id="@+id/ibAddSeconds"
-                    style="@style/ImageButtonCreateCustomModeFragmentStyle"
-                    app:srcCompat="@drawable/add_36" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etAddedSeconds"
+                    style="@style/EditTextCreateCustomModeFragmentStyle" />
 
                 <TextView
                     android:id="@+id/tvAddedSeconds"
                     style="@style/TextViewCreateCustomModeFragmentStyle"
-                    android:text="@string/zero_sec"/>
-
-                <ImageButton
-                    android:id="@+id/ibRemoveSeconds"
-                    style="@style/ImageButtonCreateCustomModeFragmentStyle"
-                    app:srcCompat="@drawable/remove_36" />
+                    android:text="@string/timer_sec" />
 
             </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvBonusTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="@string/bonus_time"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etAddedBonusSeconds"
+                style="@style/EditTextCreateCustomModeFragmentStyle"
+                android:textColorHint="@color/white"
+                android:foregroundTint="@color/white"/>
 
             <TextView
-                android:id="@+id/tvBonusTime"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/bonus_time"/>
+                android:id="@+id/tvAddedBonusSeconds"
+                style="@style/TextViewCreateCustomModeFragmentStyle"
+                android:text="@string/timer_sec" />
 
-                <ImageButton
-                    android:id="@+id/ibAddBonusSeconds"
-                    style="@style/ImageButtonCreateCustomModeFragmentStyle"
-                    app:srcCompat="@drawable/add_36" />
-
-                <TextView
-                    android:id="@+id/tvAddedBonusSeconds"
-                    style="@style/TextViewCreateCustomModeFragmentStyle"
-                    android:text="@string/zero_sec" />
-
-                <ImageButton
-                    android:id="@+id/ibRemoveBonusSeconds"
-                    android:layout_height="match_parent"
-                    android:layout_width="wrap_content"
-                    android:background="@drawable/b_shape"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    app:srcCompat="@drawable/remove_36" />
         </LinearLayout>
     </LinearLayout>
 
@@ -117,5 +114,6 @@
         android:layout_marginTop="35dp"
         style="@style/ButtonCustom"
         android:background="@drawable/b_shape"
+        android:textColor="@color/white"
         android:text="@string/b_create" />
 </LinearLayout>

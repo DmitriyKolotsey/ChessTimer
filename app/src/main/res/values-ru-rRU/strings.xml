@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ChessTimer</string>
     <string name="b_settings">Настройки</string>
     <string name="b_start">Старт</string>
     <string name="b_refresh">Обновить</string>
@@ -16,9 +15,9 @@
     <string name="create_custom_mode_title">Создание собственного режима</string>
     <string name="start_time">Начальное время:</string>
     <string name="bonus_time">"Бонусное время: "</string>
-    <string name="zero_min">0 мин</string>
-    <string name="zero_sec">0 сек</string>
+    <string name="zero">0</string>
     <string name="b_create">Создать</string>
     <string name="max_value">59 максимальное значение</string>
     <string name="min_value">0 минимальное значение</string>
+    <string name="value_must_be_more_than_0">Значения дожны быть больше нуля</string>
 </resources>

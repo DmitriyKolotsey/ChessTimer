@@ -4,14 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,16 +24,14 @@ public class CreateCustomModeFragment extends DialogFragment {
     public static final String APP_PREFERENCES_BOT_START_TIME = "bot_start_time";
     public static final String APP_PREFERENCES_BONUS_TIME = "bonus_time";
 
-    TextView tvAddedMinutes, tvAddedSeconds, tvAddedBonusSeconds;
-    ImageButton ibAddMinutes, ibRemoveMinutes, ibAddSeconds, ibRemoveSeconds, ibAddBonusSeconds, ibRemoveBonusSeconds;
+    EditText etAddedMinutes, etAddedSeconds, etAddedBonusSeconds;
     Button bCreate;
 
     SharedPreferences shpSettings;
-    Runnable minutesIncrementTask;
 
-    long addedMinutes = 0, addedSeconds = 0, addedBonusSeconds = 0;
-    long minValue = 0;
-    boolean isPressed = false;
+    long addedMinutes = 0;
+    long addedSeconds = 0;
+    long addedBonusSeconds = 0;
 
     public CreateCustomModeFragment() {
     }
@@ -54,99 +49,50 @@ public class CreateCustomModeFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialogfragment_create_custom_mode, container);
 
-        shpSettings = requireActivity().getSharedPreferences("my_settings", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = shpSettings.edit();
-
-        tvAddedMinutes = view.findViewById(R.id.tvAddedMinutes);
-        tvAddedMinutes.setText(addedMinutes + " " + getString(R.string.timer_min));
-        tvAddedSeconds = view.findViewById(R.id.tvAddedSeconds);
-        tvAddedSeconds.setText(addedSeconds + " " + getString(R.string.timer_sec));
-        tvAddedBonusSeconds = view.findViewById(R.id.tvAddedBonusSeconds);
-        tvAddedBonusSeconds.setText(addedBonusSeconds + " " + getString(R.string.timer_sec));
-
-        ibAddMinutes = view.findViewById(R.id.ibAddMinutes);
-        ibRemoveMinutes = view.findViewById(R.id.ibRemoveMinutes);
-        ibAddSeconds = view.findViewById(R.id.ibAddSeconds);
-        ibRemoveSeconds = view.findViewById(R.id.ibRemoveSeconds);
-        ibAddBonusSeconds = view.findViewById(R.id.ibAddBonusSeconds);
-        ibRemoveBonusSeconds = view.findViewById(R.id.ibRemoveBonusSeconds);
+        etAddedMinutes = view.findViewById(R.id.etAddedMinutes);
+        etAddedSeconds = view.findViewById(R.id.etAddedSeconds);
+        etAddedBonusSeconds = view.findViewById(R.id.etAddedBonusSeconds);
 
         bCreate = view.findViewById(R.id.bCreate);
 
-        ibAddMinutes.setOnClickListener(view12 -> {
-            addedMinutes++;
-            tvAddedMinutes.setText(addedMinutes + " " + getString(R.string.timer_min));
-        });
-        Handler handler = new Handler();
-        minutesIncrementTask = () -> {
-            addedMinutes++;
-            tvAddedMinutes.setText(addedMinutes + " " + getString(R.string.timer_min));
-            handler.postDelayed(minutesIncrementTask,200);
-        };
-        ibAddMinutes.setOnTouchListener((view12, motionEvent) -> {
-            switch (motionEvent.getAction()){
-                case MotionEvent.ACTION_DOWN:
-                    if (!isPressed){
-                        isPressed = true;
-                        handler.post(minutesIncrementTask);
-                    }
-                case MotionEvent.ACTION_UP:
-                    if (isPressed){
-                        isPressed = false;
-                        handler.removeCallbacks(minutesIncrementTask);
-                    }
-            }
-            return false;
-        });
-
-        ibRemoveMinutes.setOnClickListener(view1 -> {
-            if (addedMinutes != minValue){
-                addedMinutes--;
-            }
-            tvAddedMinutes.setText(addedMinutes + " " + getString(R.string.timer_min));
-        });
-
-        ibAddSeconds.setOnClickListener(view13 -> {
-            addedSeconds++;
-            tvAddedSeconds.setText(addedSeconds + " " + getString(R.string.timer_sec));
-        });
-
-        ibRemoveSeconds.setOnClickListener(view14 -> {
-            if (addedSeconds != minValue){
-                addedSeconds--;
-            }
-            tvAddedSeconds.setText(addedSeconds + " " + getString(R.string.timer_sec));
-        });
-
-        ibAddBonusSeconds.setOnClickListener(view15 -> {
-            addedBonusSeconds++;
-            tvAddedBonusSeconds.setText(addedBonusSeconds + " " + getString(R.string.timer_sec));
-        });
-
-        ibRemoveBonusSeconds.setOnClickListener(view16 -> {
-            if (addedBonusSeconds != minValue){
-                addedBonusSeconds--;
-            }
-            tvAddedBonusSeconds.setText(addedBonusSeconds + " " + getString(R.string.timer_sec));
-        });
+        shpSettings = requireActivity().getSharedPreferences("my_settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = shpSettings.edit();
 
         bCreate.setOnClickListener(view17 -> {
-            long start_time = (addedMinutes*60000) + addedSeconds*1000;
-            long bonus_time = addedBonusSeconds*1000;
+            if (String.valueOf(etAddedMinutes.getText()).equals("") || Integer.parseInt(String.valueOf(etAddedMinutes.getText())) == 0){
+                Toast.makeText(getContext(), R.string.value_must_be_more_than_0, Toast.LENGTH_SHORT).show();
+            } else {
+                addedMinutes = Long.parseLong(String.valueOf(etAddedMinutes.getText()));
+                if (String.valueOf(etAddedSeconds.getText()).equals("")){
+                    addedSeconds = 0;
+                } else {
+                    addedSeconds = Long.parseLong(String.valueOf(etAddedSeconds.getText()));
+                }
 
-            editor.putLong(APP_PREFERENCES_START_TIME, start_time);
-            editor.putLong(APP_PREFERENCES_TOP_START_TIME, start_time);
-            editor.putLong(APP_PREFERENCES_BOT_START_TIME, start_time);
-            editor.putLong(APP_PREFERENCES_BONUS_TIME, bonus_time);
-            editor.apply();
-            dismiss();
-            Intent intent = new Intent(getContext(),MainActivity.class);
-            startActivity(intent);
-            Toast.makeText(getContext(), getString(R.string.selected_settings) + getString(R.string.start_time_equals)
-                    + addedMinutes + ":" + addedSeconds + " " + getString(R.string.timer_min) + "; " + getString(R.string.bonus_time_equals) + addedBonusSeconds + " " + getString(R.string.timer_sec) + ".", Toast.LENGTH_LONG).show();
+                if (String.valueOf(etAddedBonusSeconds.getText()).equals("")){
+                    addedBonusSeconds = 0;
+                } else {
+                    addedBonusSeconds = Long.parseLong(String.valueOf(etAddedBonusSeconds.getText()));
+                }
+
+                long start_time = (addedMinutes*60000) + addedSeconds*1000;
+                long bonus_time = addedBonusSeconds*1000;
+
+                editor.putLong(APP_PREFERENCES_START_TIME, start_time);
+                editor.putLong(APP_PREFERENCES_TOP_START_TIME, start_time);
+                editor.putLong(APP_PREFERENCES_BOT_START_TIME, start_time);
+                editor.putLong(APP_PREFERENCES_BONUS_TIME, bonus_time);
+                editor.apply();
+                dismiss();
+                etAddedMinutes.setHintTextColor(getResources().getColor(R.color.elements));
+                Intent intent = new Intent(getContext(),MainActivity.class);
+                startActivity(intent);
+                Toast.makeText(getContext(), getString(R.string.selected_settings) + getString(R.string.start_time_equals)
+                        + addedMinutes + ":" + addedSeconds + " " + getString(R.string.timer_min) + "; " + getString(R.string.bonus_time_equals) + addedBonusSeconds + " " + getString(R.string.timer_sec) + ".", Toast.LENGTH_LONG).show();
+
+            }
 
         });
-
         return view;
     }
 
@@ -156,6 +102,4 @@ public class CreateCustomModeFragment extends DialogFragment {
         String title = getString(R.string.create_custom_mode_title);
         Objects.requireNonNull(getDialog()).setTitle(title);
     }
-
-
 }

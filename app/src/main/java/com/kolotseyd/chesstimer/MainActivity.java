@@ -8,7 +8,6 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -93,10 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        if (isTopTimerWorking || isBotTimerWorking){
-
-        } else
-
         if (isTopTimerWorking){
             cdtTopTimer.cancel();
             isTopTimerWorking = false;
@@ -167,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
         editor.putLong(APP_PREFERENCES_TOP_START_TIME, shpSettings.getLong(APP_PREFERENCES_START_TIME, 0));
         editor.putLong(APP_PREFERENCES_BOT_START_TIME, shpSettings.getLong(APP_PREFERENCES_START_TIME, 0));
         editor.putString(APP_PREFERENCES_CONTROL_BUTTON_STATE, "start");
-        //editor.clear();
         editor.apply();
         Toast.makeText(getApplicationContext(), "onDestroy " + shpSettings.getString(APP_PREFERENCES_CONTROL_BUTTON_STATE, "0"), Toast.LENGTH_SHORT).show();
         super.onDestroy();
@@ -209,7 +203,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                ibSettings.setVisibility(View.VISIBLE);
+                ibRefresh.setVisibility(View.VISIBLE);
 
+                tvTopTimer.setClickable(false);
+                tvBotTimer.setClickable(false);
+
+                ibStart.setImageResource(R.drawable.play_arrow_48);
+                tvBotTimer.setBackgroundResource(R.drawable.tv_shape_end);
             }
         }.start();
 
@@ -260,7 +261,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                ibSettings.setVisibility(View.VISIBLE);
+                ibRefresh.setVisibility(View.VISIBLE);
 
+                tvTopTimer.setClickable(false);
+                tvBotTimer.setClickable(false);
+
+                ibStart.setImageResource(R.drawable.play_arrow_48);
+                tvTopTimer.setBackgroundResource(R.drawable.tv_shape_end);
             }
         }.start();
 
@@ -314,7 +322,14 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
+                    ibSettings.setVisibility(View.VISIBLE);
+                    ibRefresh.setVisibility(View.VISIBLE);
 
+                    tvTopTimer.setClickable(false);
+                    tvBotTimer.setClickable(false);
+
+                    ibStart.setImageResource(R.drawable.play_arrow_48);
+                    tvTopTimer.setBackgroundResource(R.drawable.tv_shape_end);
                 }
             }.start();
         }
@@ -379,7 +394,14 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFinish() {
+                        ibSettings.setVisibility(View.VISIBLE);
+                        ibRefresh.setVisibility(View.VISIBLE);
 
+                        tvTopTimer.setClickable(false);
+                        tvBotTimer.setClickable(false);
+
+                        ibStart.setImageResource(R.drawable.play_arrow_48);
+                        tvTopTimer.setBackgroundResource(R.drawable.tv_shape_end);
                     }
                 }.start();
             } else if (shpSettings.getString(APP_PREFERENCES_LAST_ACTIVE, "").contains("bot")){
@@ -409,7 +431,14 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFinish() {
+                        ibSettings.setVisibility(View.VISIBLE);
+                        ibRefresh.setVisibility(View.VISIBLE);
 
+                        tvTopTimer.setClickable(false);
+                        tvBotTimer.setClickable(false);
+
+                        ibStart.setImageResource(R.drawable.play_arrow_48);
+                        tvBotTimer.setBackgroundResource(R.drawable.tv_shape_end);
                     }
                 }.start();
             }
